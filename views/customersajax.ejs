@@ -1,0 +1,59 @@
+<%- include("_header") -%>
+
+<h2> Find Customers</h2>
+
+<h4>Total number of records in the database: <%= totRecs %></h4>
+
+<!-- Not using bootstrap, just a simple form that you may enhance -->
+<!-- Using AJAX, not form action -->
+<style>
+    .mycus{
+        text-align: center;
+    }
+</style>
+<form>
+    <table>
+        <tr>
+            <td><label for="cusid">ID</label>:</td>
+            <td><input type="text" name="cusid" id="cusid" type="number" /></td>
+            <td>(equals)</td>
+        </tr>
+        <tr>
+            <td><label for="cusfname">First Name</label>:</td>
+            <td><input type="text" name="cusfname" id="cusfname" /></td>
+            <td>(begins with)</td>
+        </tr>
+        <tr>
+            <td><label for="cuslname">Last Name</label>:</td>
+            <td><input type="text" name="cuslname" id="cuslname" /></td>
+            <td>(begins with)</td>
+        </tr>
+        <tr>
+            <td><label for="cusstate">State</label>:</td>
+            <td><input type="text" name="cusstate" id="cusstate"  maxlength="2" pattern="[A-Za-z]+"/></td>
+            <td>(equals)</td>
+        </tr>
+        <tr>
+            <td><label for="cussalesytd">Sales YTD</label>:</td>
+            <td><input type="text" name="cussalesytd" id="cussalesytd" type="number"/></td>
+            <td>(greater than or equal to)</td>
+        </tr>
+        <tr>
+            <td><label for="cussalesprev">Sales Prev</label>:</td>
+            <td><input type="text" name="cussalesprev" id="cussalesprev" type="number" /></td>
+            <td>(greater than or equal to)</td>
+        </tr>
+        <tr>
+            <td span="2" class = "text-center">
+                <input type="submit" class="btn btn-primary mycus"value="Find" />
+                <input type="reset" class="btn btn-primary mycus"value="Reset" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div id="output" class="table-responsive-sm"></div>
+
+<script src="customersajax.js"></script>
+
+<%- include("_footer") -%>   
