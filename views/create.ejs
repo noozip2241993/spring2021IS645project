@@ -18,3 +18,32 @@
 </form>
 
 <%- include("_footer") -%>
+<p id="result"></p>
+    <script>
+        document.querySelector("form").addEventListener("submit", e => {
+            // Cancel default behavior of sending a synchronous POST request
+            // e.preventDefault();
+            // Create a FormData object, passing the form as a parameter
+            const formData = new FormData(e.target);
+            // Send form data to the server with an asynchronous POST request
+            fetch("/create", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    const paraElement = document.getElementById("result");
+                    const resultElement = document.createElement("h2");
+
+                    if (data.substring(0, 5) === "Error") {
+                        resultElement.innerText = `Error creating new customer`;
+                        paraElement.appendChild(resultElement);
+                    } else {
+                        resultElement.innerText = `New Customer Createrd!`;
+                        paraElement.appendChild(resultElement);
+                    };
+                })
+
+        });
+    </script>
